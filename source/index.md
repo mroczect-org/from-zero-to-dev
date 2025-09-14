@@ -18,7 +18,5 @@
 :caption: Navigasi
 :glob:
 
-
+docs/global.router
 ```
-
-## test
