@@ -1,8 +1,6 @@
 name: "Sphinx: Render docs"
 
-on:
-  push:
-  workflow_dispatch:
+on: push
 
 jobs:
   build:
@@ -15,14 +13,20 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.13"
 
       - name: Install dependencies
         run: |
-          pip install -U pip
-          pip install sphinx
-          # kalau ada requirements.txt, aktifkan ini:
-          # pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install \
+            sphinx \
+            myst-parser \
+            sphinxcontrib-autodoc-pydantic \
+            sphinx-inline-tabs \
+            sphinx-design \
+            sphinx-copybutton \
+            sphinxcontrib-mermaid \
+            sphinx-search
 
       - name: Build HTML
         run: sphinx-build -b html source source/build/html
@@ -34,7 +38,7 @@ jobs:
           path: source/build/html/
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
