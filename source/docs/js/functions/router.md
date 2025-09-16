@@ -5,4 +5,6 @@
 :glob:
 
 *
+scope-function-stack/router
+function-parameters/router
 ```

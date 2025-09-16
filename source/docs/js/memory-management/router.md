@@ -5,4 +5,5 @@
 :glob:
 
 *
+browser-devtools/router
 ```

@@ -5,4 +5,7 @@
 :glob:
 
 *
+object/router
+primitive-types/router
+type-casting/router
 ```
